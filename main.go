@@ -96,77 +96,12 @@ package main
 import (
 	"log"
 
-	"github.com/cactircool/bitwave/models"
+	"github.com/cactircool/bitwave/app"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 )
 
 func main() {
-	root := models.NewRootModel(
-		true,
-		[]models.Pane{
-			models.NewTablePane(
-				[]string{
-					"Name",
-					"Age",
-					"Occupation",
-				},
-				10,
-				1.0,
-				lipgloss.NewStyle().Border(lipgloss.NormalBorder()),
-			),
-			// models.NewPane(
-			// 	models.NewNestedModel(
-			// 		false,
-			// 		[]models.Pane{
-			// 			models.NewPane(
-			// 				models.NewBasicModel("top"),
-			// 				1,
-			// 				lipgloss.NewStyle().
-			// 					Border(lipgloss.RoundedBorder()),
-			// 			),
-			// 			models.NewPane(
-			// 				models.NewBasicModel("center"),
-			// 				1,
-			// 				lipgloss.NewStyle().
-			// 					Border(lipgloss.RoundedBorder()),
-			// 			),
-			// 			models.NewPane(
-			// 				models.NewBasicModel("bottom"),
-			// 				1,
-			// 				lipgloss.NewStyle().
-			// 					Border(lipgloss.RoundedBorder()),
-			// 			),
-			// 			models.NewPane(
-			// 				models.NewSpacerModel(),
-			// 				2,
-			// 				lipgloss.NewStyle(),
-			// 			),
-			// 		},
-			// 	),
-			// 	1,
-			// 	lipgloss.NewStyle().Border(lipgloss.NormalBorder()).Padding(1),
-			// ),
-			// models.NewPane(
-			// 	models.NewTextareaModel(
-			// 		"placeholder",
-			// 		false,
-			// 		lipgloss.NewStyle().Border(lipgloss.ASCIIBorder()),
-			// 	),
-			// 	1,
-			// 	lipgloss.NewStyle().
-			// 		Border(lipgloss.RoundedBorder()),
-			// ),
-			// models.NewPane(
-			// 	models.NewBasicModel("hello from the right!"),
-			// 	2,
-			// 	lipgloss.NewStyle().
-			// 		Border(lipgloss.RoundedBorder()).
-			// 		Padding(0),
-			// ),
-		},
-	)
-
+	root := app.ConstructRoot()
 	p := tea.NewProgram(root, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)
